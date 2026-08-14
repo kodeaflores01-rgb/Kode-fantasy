@@ -1,1 +1,1056 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026 Fantasy Draft Cheat Sheet</title>
 
+<style>
+:root {
+    --bg: #070b10;
+    --card: #101720;
+    --card2: #151e28;
+    --border: #283542;
+    --text: #f5f7fa;
+    --muted: #8d9aa8;
+    --green: #5ee49a;
+    --gold: #f5c451;
+    --red: #ff6b6b;
+}
+
+* {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Arial,
+        sans-serif;
+}
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(7,11,16,.95);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid var(--border);
+}
+
+.header-inner {
+    max-width: 800px;
+    margin: auto;
+    padding: 15px;
+}
+
+h1 {
+    font-size: 23px;
+    margin: 0;
+}
+
+.subtitle {
+    color: var(--muted);
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+.container {
+    max-width: 800px;
+    margin: auto;
+    padding: 12px 12px 60px;
+}
+
+/* BEST AVAILABLE */
+
+.best-card {
+    background: linear-gradient(
+        135deg,
+        #14251d,
+        #101720
+    );
+    border: 1px solid #31533f;
+    border-radius: 16px;
+    padding: 16px;
+    margin-bottom: 12px;
+}
+
+.best-label {
+    color: var(--green);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: .12em;
+}
+
+.best-name {
+    font-size: 26px;
+    font-weight: 900;
+    margin-top: 5px;
+}
+
+.best-info {
+    color: var(--muted);
+    margin-top: 3px;
+}
+
+/* CONTROLS */
+
+.controls {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    padding: 10px;
+    margin-bottom: 12px;
+}
+
+.search {
+    width: 100%;
+    padding: 13px;
+    background: #0a1017;
+    border: 1px solid var(--border);
+    color: white;
+    border-radius: 11px;
+    font-size: 16px;
+    outline: none;
+}
+
+.filters {
+    display: flex;
+    gap: 7px;
+    margin-top: 9px;
+    overflow-x: auto;
+}
+
+.filter {
+    border: 1px solid var(--border);
+    background: #0a1017;
+    color: var(--muted);
+    padding: 9px 13px;
+    border-radius: 50px;
+    white-space: nowrap;
+    font-weight: 700;
+}
+
+.filter.active {
+    background: white;
+    color: black;
+}
+
+/* STATS */
+
+.stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.stat {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 10px;
+    text-align: center;
+}
+
+.stat-number {
+    font-size: 19px;
+    font-weight: 900;
+}
+
+.stat-label {
+    color: var(--muted);
+    font-size: 10px;
+    text-transform: uppercase;
+}
+
+/* PLAYER LIST */
+
+.list {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.player {
+    display: grid;
+    grid-template-columns: 42px 1fr 45px 42px;
+    align-items: center;
+    gap: 7px;
+
+    padding: 13px 10px;
+
+    border-bottom: 1px solid #202a34;
+
+    cursor: pointer;
+
+    transition:
+        opacity .15s,
+        transform .15s,
+        background .15s;
+}
+
+.player:last-child {
+    border-bottom: none;
+}
+
+.player:active {
+    background: var(--card2);
+    transform: scale(.99);
+}
+
+.rank {
+    color: #687785;
+    font-weight: 900;
+    font-size: 15px;
+}
+
+.player-name {
+    font-size: 15px;
+    font-weight: 800;
+}
+
+.player-meta {
+    color: var(--muted);
+    font-size: 11px;
+    margin-top: 2px;
+}
+
+.position {
+    text-align: center;
+    font-size: 11px;
+    font-weight: 900;
+}
+
+.tier {
+    text-align: right;
+    color: var(--muted);
+    font-size: 10px;
+}
+
+/* POSITION COLORS */
+
+.rb {
+    color: #67e8a5;
+}
+
+.wr {
+    color: #67b7ff;
+}
+
+.qb {
+    color: #c084fc;
+}
+
+.te {
+    color: #f6c85f;
+}
+
+.k {
+    color: #fb7185;
+}
+
+.dst {
+    color: #94a3b8;
+}
+
+/* BUTTONS */
+
+.bottom-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+button {
+    padding: 12px;
+    border-radius: 11px;
+    border: 1px solid var(--border);
+    background: var(--card);
+    color: white;
+    font-weight: 800;
+}
+
+button:active {
+    transform: scale(.98);
+}
+
+.undo {
+    color: var(--green);
+}
+
+.reset {
+    color: var(--red);
+}
+
+/* EMPTY */
+
+.empty {
+    padding: 35px 15px;
+    text-align: center;
+    color: var(--muted);
+}
+
+.empty strong {
+    display: block;
+    color: white;
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+/* TOAST */
+
+.toast {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+
+    background: white;
+    color: black;
+
+    padding: 11px 17px;
+    border-radius: 50px;
+
+    font-size: 13px;
+    font-weight: 800;
+
+    z-index: 999;
+
+    transition: transform .25s;
+}
+
+.toast.show {
+    transform: translateX(-50%) translateY(0);
+}
+
+@media(max-width:450px) {
+
+    .player {
+        grid-template-columns: 35px 1fr 40px 35px;
+        padding: 12px 8px;
+    }
+
+    .player-name {
+        font-size: 14px;
+    }
+
+    .best-name {
+        font-size: 23px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="header-inner">
+        <h1>🏈 2026 Fantasy Draft</h1>
+        <div class="subtitle">
+            14-Team PPR • Tap a player when they're drafted
+        </div>
+    </div>
+</header>
+
+<div class="container">
+
+    <!-- BEST AVAILABLE -->
+
+    <div class="best-card">
+
+        <div class="best-label">
+            ⭐ BEST AVAILABLE
+        </div>
+
+        <div id="bestName" class="best-name">
+            Loading...
+        </div>
+
+        <div id="bestInfo" class="best-info">
+        </div>
+
+    </div>
+
+    <!-- SEARCH + FILTER -->
+
+    <div class="controls">
+
+        <input
+            id="search"
+            class="search"
+            type="text"
+            placeholder="Search players..."
+            autocomplete="off"
+        >
+
+        <div class="filters">
+
+            <button
+                class="filter active"
+                data-position="ALL"
+            >
+                ALL
+            </button>
+
+            <button
+                class="filter"
+                data-position="RB"
+            >
+                RB
+            </button>
+
+            <button
+                class="filter"
+                data-position="WR"
+            >
+                WR
+            </button>
+
+            <button
+                class="filter"
+                data-position="QB"
+            >
+                QB
+            </button>
+
+            <button
+                class="filter"
+                data-position="TE"
+            >
+                TE
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- STATS -->
+
+    <div class="stats">
+
+        <div class="stat">
+            <div
+                id="availableCount"
+                class="stat-number"
+            >
+                0
+            </div>
+
+            <div class="stat-label">
+                Available
+            </div>
+        </div>
+
+        <div class="stat">
+            <div
+                id="draftedCount"
+                class="stat-number"
+            >
+                0
+            </div>
+
+            <div class="stat-label">
+                Drafted
+            </div>
+        </div>
+
+        <div class="stat">
+            <div
+                id="nextRank"
+                class="stat-number"
+            >
+                -
+            </div>
+
+            <div class="stat-label">
+                Next Rank
+            </div>
+        </div>
+
+    </div>
+
+    <!-- PLAYER LIST -->
+
+    <div class="list">
+
+        <div id="playerList"></div>
+
+    </div>
+
+    <!-- BUTTONS -->
+
+    <div class="bottom-buttons">
+
+        <button
+            class="undo"
+            onclick="undoLast()"
+        >
+            ↩ Undo Last
+        </button>
+
+        <button
+            class="reset"
+            onclick="resetDraft()"
+        >
+            Reset Draft
+        </button>
+
+    </div>
+
+</div>
+
+<div
+    id="toast"
+    class="toast"
+>
+    Player drafted
+</div>
+
+<script>
+
+/*
+==================================================
+2026 FANTASY CHEAT SHEET
+14 TEAM PPR
+==================================================
+*/
+
+const players = [
+
+    ["Bijan Robinson","RB",1,1],
+    ["Ja'Marr Chase","WR",2,1],
+    ["Jahmyr Gibbs","RB",3,1],
+    ["CeeDee Lamb","WR",4,1],
+    ["Justin Jefferson","WR",5,1],
+
+    ["Amon-Ra St. Brown","WR",6,2],
+    ["Puka Nacua","WR",7,2],
+    ["Saquon Barkley","RB",8,2],
+    ["Malik Nabers","WR",9,2],
+    ["Jonathan Taylor","RB",10,2],
+
+    ["Ashton Jeanty","RB",11,2],
+    ["De'Von Achane","RB",12,2],
+    ["Nico Collins","WR",13,3],
+    ["Derrick Henry","RB",14,3],
+    ["Brian Thomas Jr.","WR",15,3],
+
+    ["A.J. Brown","WR",16,3],
+    ["Drake London","WR",17,3],
+    ["Trey McBride","TE",18,3],
+    ["Josh Allen","QB",19,4],
+    ["Jalen Hurts","QB",20,4],
+
+    ["Lamar Jackson","QB",21,4],
+    ["Brock Bowers","TE",22,4],
+    ["Chris Olave","WR",23,4],
+    ["Breece Hall","RB",24,4],
+    ["Garrett Wilson","WR",25,4],
+
+    ["Jayden Daniels","QB",26,5],
+    ["Deebo Samuel","WR",27,5],
+    ["Kenneth Walker III","RB",28,5],
+    ["Sam LaPorta","TE",29,5],
+    ["Marvin Harrison Jr.","WR",30,5],
+
+    ["Davante Adams","WR",31,5],
+    ["DeVonta Smith","WR",32,5],
+    ["Tee Higgins","WR",33,5],
+    ["James Cook","RB",34,5],
+    ["Josh Jacobs","RB",35,5],
+
+    ["Isiah Pacheco","RB",36,6],
+    ["Kyren Williams","RB",37,6],
+    ["Alvin Kamara","RB",38,6],
+    ["DJ Moore","WR",39,6],
+    ["Mike Evans","WR",40,6],
+
+    ["George Pickens","WR",41,6],
+    ["Terry McLaurin","WR",42,6],
+    ["Ladd McConkey","WR",43,6],
+    ["Jaxon Smith-Njigba","WR",44,6],
+    ["James Conner","RB",45,6],
+
+    ["D'Andre Swift","RB",46,7],
+    ["Garrett Wilson","WR",47,7],
+    ["Rashee Rice","WR",48,7],
+    ["Marvin Mims Jr.","WR",49,7],
+    ["T.J. Hockenson","TE",50,7],
+
+    ["George Kittle","TE",51,7],
+    ["Mark Andrews","TE",52,7],
+    ["Patrick Mahomes","QB",53,7],
+    ["Joe Burrow","QB",54,7],
+    ["C.J. Stroud","QB",55,7],
+
+    ["Baker Mayfield","QB",56,8],
+    ["Jordan Love","QB",57,8],
+    ["Kyler Murray","QB",58,8],
+    ["Bo Nix","QB",59,8],
+    ["Caleb Williams","QB",60,8]
+
+];
+
+
+/*
+==================================================
+STATE
+==================================================
+*/
+
+let drafted = JSON.parse(
+    localStorage.getItem("draftedPlayers") || "[]"
+);
+
+let history = [];
+
+let selectedPosition = "ALL";
+
+
+/*
+==================================================
+SAVE
+==================================================
+*/
+
+function saveDraft() {
+
+    localStorage.setItem(
+        "draftedPlayers",
+        JSON.stringify(drafted)
+    );
+
+}
+
+
+/*
+==================================================
+DRAFT PLAYER
+==================================================
+*/
+
+function draftPlayer(index) {
+
+    const player = players[index];
+
+    if (drafted.includes(index)) {
+        return;
+    }
+
+    drafted.push(index);
+
+    history.push(index);
+
+    saveDraft();
+
+    showToast(
+        player[0] + " crossed off"
+    );
+
+    render();
+
+}
+
+
+/*
+==================================================
+UNDO
+==================================================
+*/
+
+function undoLast() {
+
+    if (history.length === 0) {
+
+        showToast("Nothing to undo");
+
+        return;
+    }
+
+    const index = history.pop();
+
+    const position =
+        drafted.indexOf(index);
+
+    if (position !== -1) {
+
+        drafted.splice(position,1);
+
+    }
+
+    saveDraft();
+
+    showToast(
+        players[index][0] +
+        " added back"
+    );
+
+    render();
+
+}
+
+
+/*
+==================================================
+RESET
+==================================================
+*/
+
+function resetDraft() {
+
+    if (
+        !confirm(
+            "Reset your entire draft board?"
+        )
+    ) {
+        return;
+    }
+
+    drafted = [];
+
+    history = [];
+
+    saveDraft();
+
+    render();
+
+    showToast(
+        "Draft board reset"
+    );
+
+}
+
+
+/*
+==================================================
+RENDER
+==================================================
+*/
+
+function render() {
+
+    const list =
+        document.getElementById(
+            "playerList"
+        );
+
+    const search =
+        document
+            .getElementById("search")
+            .value
+            .toLowerCase();
+
+    /*
+    BEST AVAILABLE
+    */
+
+    const available =
+        players.filter(
+            (_,index) =>
+                !drafted.includes(index)
+        );
+
+    const best =
+        available[0];
+
+    if (best) {
+
+        document.getElementById(
+            "bestName"
+        ).textContent =
+            best[0];
+
+        document.getElementById(
+            "bestInfo"
+        ).textContent =
+            `${best[1]} • Rank ${best[2]} • Tier ${best[3]}`;
+
+        document.getElementById(
+            "nextRank"
+        ).textContent =
+            best[2];
+
+    } else {
+
+        document.getElementById(
+            "bestName"
+        ).textContent =
+            "Draft Complete";
+
+        document.getElementById(
+            "bestInfo"
+        ).textContent =
+            "";
+
+        document.getElementById(
+            "nextRank"
+        ).textContent =
+            "-";
+
+    }
+
+
+    /*
+    STATS
+    */
+
+    document.getElementById(
+        "availableCount"
+    ).textContent =
+        available.length;
+
+    document.getElementById(
+        "draftedCount"
+    ).textContent =
+        drafted.length;
+
+
+    /*
+    FILTER
+    */
+
+    const filtered =
+        players.filter(
+            (player,index) => {
+
+                const name =
+                    player[0]
+                        .toLowerCase();
+
+                const position =
+                    player[1];
+
+                const matchesSearch =
+                    name.includes(search);
+
+                const matchesPosition =
+                    selectedPosition ===
+                    "ALL" ||
+                    position ===
+                    selectedPosition;
+
+                const notDrafted =
+                    !drafted.includes(index);
+
+                return (
+                    matchesSearch &&
+                    matchesPosition &&
+                    notDrafted
+                );
+
+            }
+        );
+
+
+    /*
+    EMPTY STATE
+    */
+
+    if (filtered.length === 0) {
+
+        list.innerHTML = `
+            <div class="empty">
+
+                <strong>
+                    No players found
+                </strong>
+
+                Try another search or
+                position.
+
+            </div>
+        `;
+
+        return;
+
+    }
+
+
+    /*
+    PLAYER HTML
+    */
+
+    list.innerHTML =
+        filtered
+            .map(player => {
+
+                const index =
+                    players.indexOf(
+                        player
+                    );
+
+                const name =
+                    player[0];
+
+                const position =
+                    player[1];
+
+                const rank =
+                    player[2];
+
+                const tier =
+                    player[3];
+
+                const positionClass =
+                    position
+                        .toLowerCase();
+
+                return `
+
+                <div
+                    class="player"
+                    onclick="draftPlayer(${index})"
+                >
+
+                    <div class="rank">
+                        ${rank}
+                    </div>
+
+                    <div>
+
+                        <div class="player-name">
+                            ${name}
+                        </div>
+
+                        <div class="player-meta">
+                            Tap to cross off
+                        </div>
+
+                    </div>
+
+                    <div
+                        class="position ${positionClass}"
+                    >
+                        ${position}
+                    </div>
+
+                    <div class="tier">
+                        T${tier}
+                    </div>
+
+                </div>
+
+                `;
+
+            })
+            .join("");
+
+}
+
+
+/*
+==================================================
+POSITION FILTERS
+==================================================
+*/
+
+document
+    .querySelectorAll(".filter")
+    .forEach(button => {
+
+        button.addEventListener(
+            "click",
+            () => {
+
+                document
+                    .querySelectorAll(
+                        ".filter"
+                    )
+                    .forEach(btn =>
+                        btn.classList.remove(
+                            "active"
+                        )
+                    );
+
+                button.classList.add(
+                    "active"
+                );
+
+                selectedPosition =
+                    button.dataset.position;
+
+                render();
+
+            }
+        );
+
+    });
+
+
+/*
+==================================================
+SEARCH
+==================================================
+*/
+
+document
+    .getElementById("search")
+    .addEventListener(
+        "input",
+        render
+    );
+
+
+/*
+==================================================
+TOAST
+==================================================
+*/
+
+let toastTimeout;
+
+function showToast(message) {
+
+    const toast =
+        document.getElementById(
+            "toast"
+        );
+
+    toast.textContent =
+        message;
+
+    toast.classList.add(
+        "show"
+    );
+
+    clearTimeout(
+        toastTimeout
+    );
+
+    toastTimeout =
+        setTimeout(
+            () => {
+
+                toast.classList.remove(
+                    "show"
+                );
+
+            },
+            1300
+        );
+
+}
+
+
+/*
+==================================================
+START
+==================================================
+*/
+
+render();
+
+</script>
+
+</body>
+</html>
