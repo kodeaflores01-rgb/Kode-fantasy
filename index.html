@@ -3,19 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>2026 Fantasy Draft Cheat Sheet</title>
+<title>2026 PPR Draft Cheat Sheet</title>
 
 <style>
 :root {
     --bg: #070b10;
     --card: #101720;
     --card2: #151e28;
-    --border: #283542;
+    --border: #293642;
     --text: #f5f7fa;
     --muted: #8d9aa8;
-    --green: #5ee49a;
+    --green: #54e59a;
+    --red: #ff6666;
     --gold: #f5c451;
-    --red: #ff6b6b;
 }
 
 * {
@@ -27,33 +27,27 @@ body {
     margin: 0;
     background: var(--bg);
     color: var(--text);
-    font-family:
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        Roboto,
-        Arial,
-        sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
 }
 
 header {
     position: sticky;
     top: 0;
     z-index: 100;
-    background: rgba(7,11,16,.95);
+    background: rgba(7,11,16,.96);
     backdrop-filter: blur(15px);
     border-bottom: 1px solid var(--border);
 }
 
-.header-inner {
-    max-width: 800px;
+.header {
+    max-width: 850px;
     margin: auto;
     padding: 15px;
 }
 
 h1 {
-    font-size: 23px;
     margin: 0;
+    font-size: 23px;
 }
 
 .subtitle {
@@ -63,34 +57,30 @@ h1 {
 }
 
 .container {
-    max-width: 800px;
+    max-width: 850px;
     margin: auto;
-    padding: 12px 12px 60px;
+    padding: 12px 12px 70px;
 }
 
 /* BEST AVAILABLE */
 
-.best-card {
-    background: linear-gradient(
-        135deg,
-        #14251d,
-        #101720
-    );
+.best {
+    background: linear-gradient(135deg,#14251d,#101720);
     border: 1px solid #31533f;
-    border-radius: 16px;
-    padding: 16px;
+    border-radius: 17px;
+    padding: 17px;
     margin-bottom: 12px;
 }
 
 .best-label {
     color: var(--green);
     font-size: 11px;
-    font-weight: 800;
+    font-weight: 900;
     letter-spacing: .12em;
 }
 
 .best-name {
-    font-size: 26px;
+    font-size: 27px;
     font-weight: 900;
     margin-top: 5px;
 }
@@ -100,7 +90,7 @@ h1 {
     margin-top: 3px;
 }
 
-/* CONTROLS */
+/* SEARCH */
 
 .controls {
     background: var(--card);
@@ -113,10 +103,10 @@ h1 {
 .search {
     width: 100%;
     padding: 13px;
-    background: #0a1017;
-    border: 1px solid var(--border);
-    color: white;
     border-radius: 11px;
+    border: 1px solid var(--border);
+    background: #0a1017;
+    color: white;
     font-size: 16px;
     outline: none;
 }
@@ -124,18 +114,19 @@ h1 {
 .filters {
     display: flex;
     gap: 7px;
-    margin-top: 9px;
     overflow-x: auto;
+    margin-top: 9px;
+    padding-bottom: 2px;
 }
 
 .filter {
+    flex-shrink: 0;
     border: 1px solid var(--border);
     background: #0a1017;
     color: var(--muted);
-    padding: 9px 13px;
+    padding: 9px 14px;
     border-radius: 50px;
-    white-space: nowrap;
-    font-weight: 700;
+    font-weight: 800;
 }
 
 .filter.active {
@@ -182,20 +173,13 @@ h1 {
 
 .player {
     display: grid;
-    grid-template-columns: 42px 1fr 45px 42px;
+    grid-template-columns: 43px 1fr 45px 42px;
     align-items: center;
     gap: 7px;
-
-    padding: 13px 10px;
-
+    padding: 12px 10px;
     border-bottom: 1px solid #202a34;
-
     cursor: pointer;
-
-    transition:
-        opacity .15s,
-        transform .15s,
-        background .15s;
+    transition: background .12s, transform .12s;
 }
 
 .player:last-child {
@@ -204,13 +188,12 @@ h1 {
 
 .player:active {
     background: var(--card2);
-    transform: scale(.99);
+    transform: scale(.985);
 }
 
 .rank {
-    color: #687785;
+    color: #71808e;
     font-weight: 900;
-    font-size: 15px;
 }
 
 .player-name {
@@ -238,33 +221,16 @@ h1 {
 
 /* POSITION COLORS */
 
-.rb {
-    color: #67e8a5;
-}
+.rb { color: #54e59a; }
+.wr { color: #5eb5ff; }
+.qb { color: #c084fc; }
+.te { color: #f5c451; }
+.k { color: #fb7185; }
+.dst { color: #94a3b8; }
 
-.wr {
-    color: #67b7ff;
-}
+/* BOTTOM */
 
-.qb {
-    color: #c084fc;
-}
-
-.te {
-    color: #f6c85f;
-}
-
-.k {
-    color: #fb7185;
-}
-
-.dst {
-    color: #94a3b8;
-}
-
-/* BUTTONS */
-
-.bottom-buttons {
+.buttons {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 8px;
@@ -272,16 +238,17 @@ h1 {
 }
 
 button {
+    font: inherit;
+    cursor: pointer;
+}
+
+.action {
     padding: 12px;
     border-radius: 11px;
     border: 1px solid var(--border);
     background: var(--card);
     color: white;
     font-weight: 800;
-}
-
-button:active {
-    transform: scale(.98);
 }
 
 .undo {
@@ -295,7 +262,7 @@ button:active {
 /* EMPTY */
 
 .empty {
-    padding: 35px 15px;
+    padding: 40px 15px;
     text-align: center;
     color: var(--muted);
 }
@@ -313,18 +280,18 @@ button:active {
     position: fixed;
     bottom: 20px;
     left: 50%;
+    z-index: 999;
+
     transform: translateX(-50%) translateY(100px);
 
     background: white;
     color: black;
 
-    padding: 11px 17px;
+    padding: 11px 18px;
     border-radius: 50px;
 
     font-size: 13px;
     font-weight: 800;
-
-    z-index: 999;
 
     transition: transform .25s;
 }
@@ -354,262 +321,478 @@ button:active {
 <body>
 
 <header>
-    <div class="header-inner">
-        <h1>🏈 2026 Fantasy Draft</h1>
-        <div class="subtitle">
-            14-Team PPR • Tap a player when they're drafted
-        </div>
+<div class="header">
+
+    <h1>🏈 2026 PPR Draft Cheat Sheet</h1>
+
+    <div class="subtitle">
+        14-Team PPR • Tap a player when drafted
     </div>
+
+</div>
 </header>
+
 
 <div class="container">
 
-    <!-- BEST AVAILABLE -->
+<!-- BEST AVAILABLE -->
 
-    <div class="best-card">
+<div class="best">
 
-        <div class="best-label">
-            ⭐ BEST AVAILABLE
-        </div>
-
-        <div id="bestName" class="best-name">
-            Loading...
-        </div>
-
-        <div id="bestInfo" class="best-info">
-        </div>
-
+    <div class="best-label">
+        ⭐ BEST AVAILABLE
     </div>
 
-    <!-- SEARCH + FILTER -->
-
-    <div class="controls">
-
-        <input
-            id="search"
-            class="search"
-            type="text"
-            placeholder="Search players..."
-            autocomplete="off"
-        >
-
-        <div class="filters">
-
-            <button
-                class="filter active"
-                data-position="ALL"
-            >
-                ALL
-            </button>
-
-            <button
-                class="filter"
-                data-position="RB"
-            >
-                RB
-            </button>
-
-            <button
-                class="filter"
-                data-position="WR"
-            >
-                WR
-            </button>
-
-            <button
-                class="filter"
-                data-position="QB"
-            >
-                QB
-            </button>
-
-            <button
-                class="filter"
-                data-position="TE"
-            >
-                TE
-            </button>
-
-        </div>
-
+    <div
+        id="bestName"
+        class="best-name"
+    >
+        Loading...
     </div>
 
-    <!-- STATS -->
+    <div
+        id="bestInfo"
+        class="best-info"
+    ></div>
 
-    <div class="stats">
+</div>
 
-        <div class="stat">
-            <div
-                id="availableCount"
-                class="stat-number"
-            >
-                0
-            </div>
 
-            <div class="stat-label">
-                Available
-            </div>
-        </div>
+<!-- SEARCH / POSITION FILTER -->
 
-        <div class="stat">
-            <div
-                id="draftedCount"
-                class="stat-number"
-            >
-                0
-            </div>
+<div class="controls">
 
-            <div class="stat-label">
-                Drafted
-            </div>
-        </div>
+    <input
+        id="search"
+        class="search"
+        placeholder="Search player..."
+        autocomplete="off"
+    >
 
-        <div class="stat">
-            <div
-                id="nextRank"
-                class="stat-number"
-            >
-                -
-            </div>
-
-            <div class="stat-label">
-                Next Rank
-            </div>
-        </div>
-
-    </div>
-
-    <!-- PLAYER LIST -->
-
-    <div class="list">
-
-        <div id="playerList"></div>
-
-    </div>
-
-    <!-- BUTTONS -->
-
-    <div class="bottom-buttons">
+    <div class="filters">
 
         <button
-            class="undo"
-            onclick="undoLast()"
+            class="filter active"
+            data-position="ALL"
         >
-            ↩ Undo Last
+            ALL
         </button>
 
         <button
-            class="reset"
-            onclick="resetDraft()"
+            class="filter"
+            data-position="RB"
         >
-            Reset Draft
+            RB
+        </button>
+
+        <button
+            class="filter"
+            data-position="WR"
+        >
+            WR
+        </button>
+
+        <button
+            class="filter"
+            data-position="QB"
+        >
+            QB
+        </button>
+
+        <button
+            class="filter"
+            data-position="TE"
+        >
+            TE
+        </button>
+
+        <button
+            class="filter"
+            data-position="K"
+        >
+            K
+        </button>
+
+        <button
+            class="filter"
+            data-position="DST"
+        >
+            DST
         </button>
 
     </div>
 
 </div>
+
+
+<!-- STATS -->
+
+<div class="stats">
+
+    <div class="stat">
+        <div
+            id="availableCount"
+            class="stat-number"
+        >250</div>
+
+        <div class="stat-label">
+            Available
+        </div>
+    </div>
+
+    <div class="stat">
+        <div
+            id="draftedCount"
+            class="stat-number"
+        >0</div>
+
+        <div class="stat-label">
+            Drafted
+        </div>
+    </div>
+
+    <div class="stat">
+        <div
+            id="nextRank"
+            class="stat-number"
+        >1</div>
+
+        <div class="stat-label">
+            Best Rank
+        </div>
+    </div>
+
+</div>
+
+
+<!-- PLAYER LIST -->
+
+<div class="list">
+
+    <div id="playerList"></div>
+
+</div>
+
+
+<!-- ACTIONS -->
+
+<div class="buttons">
+
+    <button
+        class="action undo"
+        onclick="undoLast()"
+    >
+        ↩ Undo Last
+    </button>
+
+    <button
+        class="action reset"
+        onclick="resetDraft()"
+    >
+        Reset Draft
+    </button>
+
+</div>
+
+</div>
+
 
 <div
     id="toast"
     class="toast"
->
-    Player drafted
-</div>
+></div>
+
 
 <script>
 
 /*
-==================================================
-2026 FANTASY CHEAT SHEET
-14 TEAM PPR
-==================================================
+====================================================
+2026 PPR TOP 250
+Source: RotoBaller 2026 PPR rankings
+====================================================
+
+Format:
+
+[Name, Position, Overall Rank, Tier]
 */
 
 const players = [
 
-    ["Bijan Robinson","RB",1,1],
-    ["Ja'Marr Chase","WR",2,1],
-    ["Jahmyr Gibbs","RB",3,1],
-    ["CeeDee Lamb","WR",4,1],
-    ["Justin Jefferson","WR",5,1],
+["Jahmyr Gibbs","RB",1,1],
+["Puka Nacua","WR",2,1],
+["Bijan Robinson","RB",3,1],
+["Christian McCaffrey","RB",4,1],
+["Ja'Marr Chase","WR",5,1],
 
-    ["Amon-Ra St. Brown","WR",6,2],
-    ["Puka Nacua","WR",7,2],
-    ["Saquon Barkley","RB",8,2],
-    ["Malik Nabers","WR",9,2],
-    ["Jonathan Taylor","RB",10,2],
+["CeeDee Lamb","WR",6,2],
+["Jaxon Smith-Njigba","WR",7,2],
+["Jonathan Taylor","RB",8,2],
+["Amon-Ra St. Brown","WR",9,2],
+["Justin Jefferson","WR",10,2],
+["James Cook III","RB",11,2],
+["Drake London","WR",12,2],
+["Saquon Barkley","RB",13,2],
+["Ashton Jeanty","RB",14,2],
+["Kenneth Walker III","RB",15,2],
+["George Pickens","WR",16,2],
 
-    ["Ashton Jeanty","RB",11,2],
-    ["De'Von Achane","RB",12,2],
-    ["Nico Collins","WR",13,3],
-    ["Derrick Henry","RB",14,3],
-    ["Brian Thomas Jr.","WR",15,3],
+["De'Von Achane","RB",17,3],
+["Chase Brown","RB",18,3],
+["Omarion Hampton","RB",19,3],
+["Derrick Henry","RB",20,3],
+["Nico Collins","WR",21,3],
+["Brock Bowers","TE",22,3],
+["Chris Olave","WR",23,3],
+["A.J. Brown","WR",24,3],
 
-    ["A.J. Brown","WR",16,3],
-    ["Drake London","WR",17,3],
-    ["Trey McBride","TE",18,3],
-    ["Josh Allen","QB",19,4],
-    ["Jalen Hurts","QB",20,4],
+["Jeremiyah Love","RB",25,4],
+["DeVonta Smith","WR",26,4],
+["Trey McBride","TE",27,4],
+["Kyren Williams","RB",28,4],
+["Josh Allen","QB",29,4],
+["Tee Higgins","WR",30,4],
+["Javonte Williams","RB",31,4],
+["Travis Etienne Jr.","RB",32,4],
+["Zay Flowers","WR",33,4],
+["Breece Hall","RB",34,4],
+["Davante Adams","WR",35,4],
+["Rashee Rice","WR",36,4],
 
-    ["Lamar Jackson","QB",21,4],
-    ["Brock Bowers","TE",22,4],
-    ["Chris Olave","WR",23,4],
-    ["Breece Hall","RB",24,4],
-    ["Garrett Wilson","WR",25,4],
+["Josh Jacobs","RB",37,5],
+["Colston Loveland","TE",38,5],
+["Ladd McConkey","WR",39,5],
+["Terry McLaurin","WR",40,5],
+["Garrett Wilson","WR",41,5],
+["Emeka Egbuka","WR",42,5],
+["Luther Burden III","WR",43,5],
+["Mike Evans","WR",44,5],
+["Tetairoa McMillan","WR",45,5],
+["Jaylen Waddle","WR",46,5],
+["Malik Nabers","WR",47,5],
+["Cam Skattebo","RB",48,5],
+["Lamar Jackson","QB",49,5],
+["Jameson Williams","WR",50,5],
+["D'Andre Swift","RB",51,5],
+["DJ Moore","WR",52,5],
+["Jayden Daniels","QB",53,5],
 
-    ["Jayden Daniels","QB",26,5],
-    ["Deebo Samuel","WR",27,5],
-    ["Kenneth Walker III","RB",28,5],
-    ["Sam LaPorta","TE",29,5],
-    ["Marvin Harrison Jr.","WR",30,5],
+["Bhayshul Tuten","RB",54,6],
+["David Montgomery","RB",55,6],
+["TreVeyon Henderson","RB",56,6],
+["Quinshon Judkins","RB",57,6],
+["Drake Maye","QB",58,6],
+["Bucky Irving","RB",59,6],
+["Jadarian Price","RB",60,6],
+["Jordyn Tyson","WR",61,6],
+["Christian Watson","WR",62,6],
+["Joe Burrow","QB",63,6],
 
-    ["Davante Adams","WR",31,5],
-    ["DeVonta Smith","WR",32,5],
-    ["Tee Higgins","WR",33,5],
-    ["James Cook","RB",34,5],
-    ["Josh Jacobs","RB",35,5],
+["Carnell Tate","WR",64,7],
+["Marvin Harrison Jr.","WR",65,7],
+["Tony Pollard","RB",66,7],
+["Parker Washington","WR",67,7],
+["Rhamondre Stevenson","RB",68,7],
+["Tyler Warren","TE",69,7],
+["Chuba Hubbard","RB",70,7],
+["Jalen Hurts","QB",71,7],
+["Rome Odunze","WR",72,7],
+["Brian Thomas Jr.","WR",73,7],
+["Caleb Williams","QB",74,7],
+["DK Metcalf","WR",75,7],
+["Tucker Kraft","TE",76,7],
+["Rico Dowdle","RB",77,7],
+["Jaylen Warren","RB",78,7],
+["Courtland Sutton","WR",79,7],
+["Justin Herbert","QB",80,7],
+["Jakobi Meyers","WR",81,7],
+["Jordan Addison","WR",82,7],
+["Trevor Lawrence","QB",83,7],
+["Dak Prescott","QB",84,7],
+["J.K. Dobbins","RB",85,7],
+["Brock Purdy","QB",86,7],
 
-    ["Isiah Pacheco","RB",36,6],
-    ["Kyren Williams","RB",37,6],
-    ["Alvin Kamara","RB",38,6],
-    ["DJ Moore","WR",39,6],
-    ["Mike Evans","WR",40,6],
+["Michael Wilson","WR",87,8],
+["Jaxson Dart","QB",88,8],
+["Kyle Pitts Sr.","TE",89,8],
+["Blake Corum","RB",90,8],
+["Alec Pierce","WR",91,8],
+["Harold Fannin Jr.","TE",92,8],
+["Patrick Mahomes II","QB",93,8],
+["Sam LaPorta","TE",94,8],
+["Michael Pittman Jr.","WR",95,8],
+["Josh Downs","WR",96,8],
+["RJ Harvey","RB",97,8],
+["Jayden Reed","WR",98,8],
+["Xavier Worthy","WR",99,8],
+["Matthew Stafford","QB",100,8],
+["Chris Godwin Jr.","WR",101,8],
+["Mark Andrews","TE",102,8],
 
-    ["George Pickens","WR",41,6],
-    ["Terry McLaurin","WR",42,6],
-    ["Ladd McConkey","WR",43,6],
-    ["Jaxon Smith-Njigba","WR",44,6],
-    ["James Conner","RB",45,6],
+["Bo Nix","QB",103,9],
+["Makai Lemon","WR",104,9],
+["Kyle Monangai","RB",105,9],
+["Kenneth Gainwell","RB",106,9],
+["Jordan Love","QB",107,9],
+["Dalton Kincaid","TE",108,9],
+["George Kittle","TE",109,9],
+["Kyler Murray","QB",110,9],
+["Quentin Johnston","WR",111,9],
+["KC Concepcion","WR",112,9],
+["Matthew Golden","WR",113,9],
+["Jordan Mason","RB",114,9],
+["Wan'Dale Robinson","WR",115,9],
+["Aaron Jones Sr.","RB",116,9],
+["Tyler Shough","QB",117,9],
+["Jared Goff","QB",118,9],
+["Baker Mayfield","QB",119,9],
+["Travis Kelce","TE",120,9],
+["Malik Willis","QB",121,9],
 
-    ["D'Andre Swift","RB",46,7],
-    ["Garrett Wilson","WR",47,7],
-    ["Rashee Rice","WR",48,7],
-    ["Marvin Mims Jr.","WR",49,7],
-    ["T.J. Hockenson","TE",50,7],
+["Rachaad White","RB",122,10],
+["Jake Ferguson","TE",123,10],
+["Jalen Coker","WR",124,10],
+["Dallas Goedert","TE",125,10],
+["Chris Rodriguez Jr.","RB",126,10],
+["Jonathon Brooks","RB",127,10],
+["Keaton Mitchell","RB",128,10],
+["Romeo Doubs","WR",129,10],
+["Khalil Shakir","WR",130,10],
+["Isaiah Likely","TE",131,10],
+["Sam Darnold","QB",132,10],
+["C.J. Stroud","QB",133,10],
+["Tyrone Tracy Jr.","RB",134,10],
+["Jayden Higgins","WR",135,10],
+["Jalen McMillan","WR",136,10],
+["Jacory Croskey-Merritt","RB",137,10],
+["Isiah Pacheco","RB",138,10],
+["Daniel Jones","QB",139,10],
+["Oronde Gadsden II","TE",140,10],
+["Hunter Henry","TE",141,10],
+["Rashid Shaheed","WR",142,10],
 
-    ["George Kittle","TE",51,7],
-    ["Mark Andrews","TE",52,7],
-    ["Patrick Mahomes","QB",53,7],
-    ["Joe Burrow","QB",54,7],
-    ["C.J. Stroud","QB",55,7],
+["Omar Cooper Jr.","WR",143,11],
+["Jauan Jennings","WR",144,11],
+["Deebo Samuel Sr.","WR",145,11],
+["Brenton Strange","TE",146,11],
+["Brian Robinson Jr.","RB",147,11],
+["Woody Marks","RB",148,11],
+["Brandon Aubrey","K",149,11],
+["Denzel Boston","WR",150,11],
+["Chig Okonkwo","TE",151,11],
+["Calvin Ridley","WR",152,11],
+["Stefon Diggs","WR",153,11],
+["Juwan Johnson","TE",154,11],
+["Kenyon Sadiq","TE",155,11],
+["Houston Texans","DST",156,11],
+["Ryan Flournoy","WR",157,11],
+["Jalen Nailor","WR",158,11],
+["Cam Ward","QB",159,11],
+["Bryce Young","QB",160,11],
+["Los Angeles Rams","DST",161,11],
+["Tre Tucker","WR",162,11],
+["Seattle Seahawks","DST",163,11],
+["Ka'imi Fairbairn","K",164,11],
+["Denver Broncos","DST",165,11],
+["Jerry Jeudy","WR",166,11],
+["T.J. Hockenson","TE",167,11],
+["Tyjae Spears","RB",168,11],
 
-    ["Baker Mayfield","QB",56,8],
-    ["Jordan Love","QB",57,8],
-    ["Kyler Murray","QB",58,8],
-    ["Bo Nix","QB",59,8],
-    ["Caleb Williams","QB",60,8]
+["Cam Little","K",169,12],
+["Dalton Schultz","TE",170,12],
+["Germie Bernard","WR",171,12],
+["Pat Freiermuth","TE",172,12],
+["Tank Bigsby","RB",173,12],
+["Isaac TeSlaa","WR",174,12],
+["Fernando Mendoza","QB",175,12],
+["Aaron Rodgers","QB",176,12],
+["Tyler Allgeier","RB",177,12],
+["Jason Myers","K",178,12],
+["Dylan Sampson","RB",179,12],
+["Cameron Dicker","K",180,12],
+["Alvin Kamara","RB",181,12],
+["Sean Tucker","RB",182,12],
+["Jacoby Brissett","QB",183,12],
+["Adonai Mitchell","WR",184,12],
+["Kaytron Allen","RB",185,12],
+["Terrance Ferguson","TE",186,12],
+["Jonah Coleman","RB",187,12],
+["Cooper Kupp","WR",188,12],
+["Gunnar Helm","TE",189,12],
+["Travis Hunter","WR",190,12],
+["Antonio Williams","WR",191,12],
+["De'Zhaun Stribling","WR",192,12],
+["Tre Harris","WR",193,12],
+["Greg Dulcich","TE",194,12],
+["Jordan James","RB",195,12],
+["Emanuel Wilson","RB",196,12],
+["Samaje Perine","RB",197,12],
+["Braelon Allen","RB",198,12],
+["Minnesota Vikings","DST",199,12],
+["Ray Davis","RB",200,12],
+
+["Cade Otton","TE",201,13],
+["Jacksonville Jaguars","DST",202,13],
+["Pittsburgh Steelers","DST",203,13],
+["DJ Giddens","RB",204,13],
+["Tank Dell","WR",205,13],
+["Zach Charbonnet","RB",206,13],
+["Pat Bryant","WR",207,13],
+["Kayshon Boutte","WR",208,13],
+["Jaylin Noel","WR",209,13],
+["Jaydon Blue","RB",210,13],
+["MarShawn Lloyd","RB",211,13],
+["Mike Washington Jr.","RB",212,13],
+["Los Angeles Chargers","DST",213,13],
+["Zachariah Branch","WR",214,13],
+["Baltimore Ravens","DST",215,13],
+["Keenan Allen","WR",216,13],
+["Troy Franklin","WR",217,13],
+["Justice Hill","RB",218,13],
+["Devaughn Vele","WR",219,13],
+["Dontayvion Wicks","WR",220,13],
+["Malik Washington","WR",221,13],
+["Christian Kirk","WR",222,13],
+["Mike Gesicki","TE",223,13],
+["AJ Barner","TE",224,13],
+["Tua Tagovailoa","QB",225,13],
+["Rashod Bateman","WR",226,13],
+["Malachi Fields","WR",227,13],
+
+["Emmett Johnson","RB",228,14],
+["Jalen Tolbert","WR",229,14],
+["Kendrick Bourne","WR",230,14],
+["Nicholas Singleton","RB",231,14],
+["Andrei Iosivas","WR",232,14],
+["Mack Hollins","WR",233,14],
+["Najee Harris","RB",234,14],
+["Colby Parkinson","TE",235,14],
+["Darnell Mooney","WR",236,14],
+["Geno Smith","QB",237,14],
+["David Njoku","TE",238,14],
+["Chimere Dike","WR",239,14],
+["Jack Bech","WR",240,14],
+["Marvin Mims Jr.","WR",241,14],
+["Ted Hurst","WR",242,14],
+["Demond Claiborne","RB",243,14],
+["Tyreek Hill","WR",244,14],
+["Chris Bell","WR",245,14],
+["Kalif Raymond","WR",246,14],
+["Darnell Washington","TE",247,14],
+["Kaelon Black","RB",248,14],
+["Deshaun Watson","QB",249,14],
+["Tory Horton","WR",250,14]
 
 ];
 
 
 /*
-==================================================
-STATE
-==================================================
+====================================================
+DRAFT STATE
+====================================================
 */
 
 let drafted = JSON.parse(
-    localStorage.getItem("draftedPlayers") || "[]"
+    localStorage.getItem("fantasyDrafted") || "[]"
 );
 
 let history = [];
@@ -618,15 +801,15 @@ let selectedPosition = "ALL";
 
 
 /*
-==================================================
+====================================================
 SAVE
-==================================================
+====================================================
 */
 
-function saveDraft() {
+function save() {
 
     localStorage.setItem(
-        "draftedPlayers",
+        "fantasyDrafted",
         JSON.stringify(drafted)
     );
 
@@ -634,27 +817,28 @@ function saveDraft() {
 
 
 /*
-==================================================
+====================================================
 DRAFT PLAYER
-==================================================
+====================================================
 */
 
-function draftPlayer(index) {
+function draftPlayer(rank) {
 
-    const player = players[index];
-
-    if (drafted.includes(index)) {
+    if (drafted.includes(rank)) {
         return;
     }
 
-    drafted.push(index);
+    drafted.push(rank);
 
-    history.push(index);
+    history.push(rank);
 
-    saveDraft();
+    save();
+
+    const player =
+        players.find(p => p[2] === rank);
 
     showToast(
-        player[0] + " crossed off"
+        "✓ " + player[0]
     );
 
     render();
@@ -663,36 +847,37 @@ function draftPlayer(index) {
 
 
 /*
-==================================================
+====================================================
 UNDO
-==================================================
+====================================================
 */
 
 function undoLast() {
 
-    if (history.length === 0) {
+    if (!history.length) {
 
-        showToast("Nothing to undo");
+        showToast(
+            "Nothing to undo"
+        );
 
         return;
     }
 
-    const index = history.pop();
+    const rank =
+        history.pop();
 
-    const position =
-        drafted.indexOf(index);
+    drafted =
+        drafted.filter(
+            r => r !== rank
+        );
 
-    if (position !== -1) {
+    save();
 
-        drafted.splice(position,1);
-
-    }
-
-    saveDraft();
+    const player =
+        players.find(p => p[2] === rank);
 
     showToast(
-        players[index][0] +
-        " added back"
+        "↩ " + player[0] + " added back"
     );
 
     render();
@@ -701,18 +886,19 @@ function undoLast() {
 
 
 /*
-==================================================
+====================================================
 RESET
-==================================================
+====================================================
 */
 
 function resetDraft() {
 
-    if (
-        !confirm(
-            "Reset your entire draft board?"
-        )
-    ) {
+    const answer =
+        confirm(
+            "Reset all drafted players?"
+        );
+
+    if (!answer) {
         return;
     }
 
@@ -720,45 +906,43 @@ function resetDraft() {
 
     history = [];
 
-    saveDraft();
+    save();
 
     render();
 
     showToast(
-        "Draft board reset"
+        "Draft reset"
     );
 
 }
 
 
 /*
-==================================================
+====================================================
 RENDER
-==================================================
+====================================================
 */
 
 function render() {
-
-    const list =
-        document.getElementById(
-            "playerList"
-        );
 
     const search =
         document
             .getElementById("search")
             .value
-            .toLowerCase();
+            .toLowerCase()
+            .trim();
+
+    const available =
+        players.filter(
+            player =>
+                !drafted.includes(
+                    player[2]
+                )
+        );
 
     /*
     BEST AVAILABLE
     */
-
-    const available =
-        players.filter(
-            (_,index) =>
-                !drafted.includes(index)
-        );
 
     const best =
         available[0];
@@ -773,7 +957,7 @@ function render() {
         document.getElementById(
             "bestInfo"
         ).textContent =
-            `${best[1]} • Rank ${best[2]} • Tier ${best[3]}`;
+            `${best[1]} • Overall #${best[2]} • Tier ${best[3]}`;
 
         document.getElementById(
             "nextRank"
@@ -820,8 +1004,8 @@ function render() {
     */
 
     const filtered =
-        players.filter(
-            (player,index) => {
+        available.filter(
+            player => {
 
                 const name =
                     player[0]
@@ -834,18 +1018,12 @@ function render() {
                     name.includes(search);
 
                 const matchesPosition =
-                    selectedPosition ===
-                    "ALL" ||
-                    position ===
-                    selectedPosition;
-
-                const notDrafted =
-                    !drafted.includes(index);
+                    selectedPosition === "ALL" ||
+                    position === selectedPosition;
 
                 return (
                     matchesSearch &&
-                    matchesPosition &&
-                    notDrafted
+                    matchesPosition
                 );
 
             }
@@ -853,21 +1031,17 @@ function render() {
 
 
     /*
-    EMPTY STATE
+    EMPTY
     */
 
-    if (filtered.length === 0) {
+    if (!filtered.length) {
 
-        list.innerHTML = `
+        document.getElementById(
+            "playerList"
+        ).innerHTML = `
             <div class="empty">
-
-                <strong>
-                    No players found
-                </strong>
-
-                Try another search or
-                position.
-
+                <strong>No players found</strong>
+                Try another search or position.
             </div>
         `;
 
@@ -877,17 +1051,15 @@ function render() {
 
 
     /*
-    PLAYER HTML
+    PLAYER ROWS
     */
 
-    list.innerHTML =
-        filtered
-            .map(player => {
+    document.getElementById(
+        "playerList"
+    ).innerHTML =
 
-                const index =
-                    players.indexOf(
-                        player
-                    );
+        filtered.map(
+            player => {
 
                 const name =
                     player[0];
@@ -901,15 +1073,14 @@ function render() {
                 const tier =
                     player[3];
 
-                const positionClass =
-                    position
-                        .toLowerCase();
+                const cssPosition =
+                    position.toLowerCase();
 
                 return `
 
                 <div
                     class="player"
-                    onclick="draftPlayer(${index})"
+                    onclick="draftPlayer(${rank})"
                 >
 
                     <div class="rank">
@@ -923,13 +1094,13 @@ function render() {
                         </div>
 
                         <div class="player-meta">
-                            Tap to cross off
+                            Tap to remove
                         </div>
 
                     </div>
 
                     <div
-                        class="position ${positionClass}"
+                        class="position ${cssPosition}"
                     >
                         ${position}
                     </div>
@@ -942,16 +1113,16 @@ function render() {
 
                 `;
 
-            })
-            .join("");
+            }
+        ).join("");
 
 }
 
 
 /*
-==================================================
-POSITION FILTERS
-==================================================
+====================================================
+POSITION BUTTONS
+====================================================
 */
 
 document
@@ -963,13 +1134,12 @@ document
             () => {
 
                 document
-                    .querySelectorAll(
-                        ".filter"
-                    )
-                    .forEach(btn =>
-                        btn.classList.remove(
-                            "active"
-                        )
+                    .querySelectorAll(".filter")
+                    .forEach(
+                        b =>
+                            b.classList.remove(
+                                "active"
+                            )
                     );
 
                 button.classList.add(
@@ -988,9 +1158,9 @@ document
 
 
 /*
-==================================================
+====================================================
 SEARCH
-==================================================
+====================================================
 */
 
 document
@@ -1002,12 +1172,12 @@ document
 
 
 /*
-==================================================
+====================================================
 TOAST
-==================================================
+====================================================
 */
 
-let toastTimeout;
+let toastTimer;
 
 function showToast(message) {
 
@@ -1024,10 +1194,10 @@ function showToast(message) {
     );
 
     clearTimeout(
-        toastTimeout
+        toastTimer
     );
 
-    toastTimeout =
+    toastTimer =
         setTimeout(
             () => {
 
@@ -1036,16 +1206,16 @@ function showToast(message) {
                 );
 
             },
-            1300
+            1200
         );
 
 }
 
 
 /*
-==================================================
+====================================================
 START
-==================================================
+====================================================
 */
 
 render();
